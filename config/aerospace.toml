@@ -1,0 +1,106 @@
+# DwindleSpace config — Hyprland/Omarchy muscle memory on macOS.
+# cmd+alt acts as SUPER.  cmd+opt+<n> is free on macOS; the one real casualty
+# is cmd+opt+left/right (browser prev/next tab) and cmd+opt+up (Finder).
+
+config-version = 2
+
+# --- DwindleSpace fork options ---------------------------------------------
+window-insertion = 'dwindle'   # bsp insertion; orientation from tile aspect
+macos-native-tabs = true       # background native tabs don't get phantom tiles
+
+# --- normalization ----------------------------------------------------------
+# flatten ON is what gives bsp-style close (sibling reclaims the space).
+# opposite-orientation OFF because forced alternation fights dwindle.
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = false
+
+after-startup-command = [
+    # JankyBorders: strong focus indicator. It detects an already-running
+    # instance, so an AeroSpace restart won't start it twice.
+    'exec-and-forget borders active_color=0xff89b4fa inactive_color=0x00000000 width=6.0'
+]
+start-at-login = true
+auto-reload-config = true
+accordion-padding = 30
+default-root-container-layout = 'tiles'
+default-root-container-orientation = 'auto'
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+automatically-unhide-macos-hidden-apps = false
+
+persistent-workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+
+focus-follows-mouse.enabled = false
+key-mapping.preset = 'qwerty'
+
+[workspace-to-monitor-force-assignment]
+1 = 'LG ULTRAWIDE'
+2 = 'LG ULTRAWIDE'
+3 = 'LG ULTRAWIDE'
+4 = 'LG ULTRAWIDE'
+5 = 'LG ULTRAWIDE'
+6 = 'DELL P2715Q'
+7 = 'DELL P2715Q'
+8 = 'DELL P2715Q'
+9 = 'DELL P2715Q'
+
+[gaps]
+inner.horizontal = 12
+inner.vertical   = 12
+outer.left       = 12
+outer.right      = 12
+outer.top        = 12
+outer.bottom     = 12
+
+[mode.main.binding]
+    # focus
+    cmd-left  = 'focus left'
+    cmd-down  = 'focus down'
+    cmd-up    = 'focus up'
+    cmd-right = 'focus right'
+
+    # move window
+    cmd-shift-left  = 'move left'
+    cmd-shift-down  = 'move down'
+    cmd-shift-up    = 'move up'
+    cmd-shift-right = 'move right'
+
+    # switch workspace
+    cmd-1 = 'workspace 1'
+    cmd-2 = 'workspace 2'
+    cmd-3 = 'workspace 3'
+    cmd-4 = 'workspace 4'
+    cmd-5 = 'workspace 5'
+    cmd-6 = 'workspace 6'
+    cmd-7 = 'workspace 7'
+    cmd-8 = 'workspace 8'
+    cmd-9 = 'workspace 9'
+    cmd-backtick = 'workspace-back-and-forth'  # cmd-tab is unavailable: macOS App Switcher
+
+    # send window to workspace
+    cmd-shift-1 = 'move-node-to-workspace 1 --focus-follows-window'
+    cmd-shift-2 = 'move-node-to-workspace 2 --focus-follows-window'
+    cmd-shift-3 = 'move-node-to-workspace 3 --focus-follows-window'
+    cmd-shift-4 = 'move-node-to-workspace 4 --focus-follows-window'
+    cmd-shift-5 = 'move-node-to-workspace 5 --focus-follows-window'
+    cmd-shift-6 = 'move-node-to-workspace 6 --focus-follows-window'
+    cmd-shift-7 = 'move-node-to-workspace 7 --focus-follows-window'
+    cmd-shift-8 = 'move-node-to-workspace 8 --focus-follows-window'
+    cmd-shift-9 = 'move-node-to-workspace 9 --focus-follows-window'
+
+    # move workspace between monitors
+    cmd-comma  = 'move-workspace-to-monitor --wrap-around prev'
+    cmd-period = 'move-workspace-to-monitor --wrap-around next'
+
+    # window ops
+    cmd-f       = 'fullscreen'
+    cmd-shift-f = 'layout floating tiling'
+    cmd-w       = 'close'
+    cmd-r       = 'flatten-workspace-tree'
+    cmd-e       = 'layout tiles horizontal vertical'
+    cmd-a       = 'layout accordion horizontal vertical'
+    cmd-minus   = 'resize smart -50'
+    cmd-equal   = 'resize smart +50'
+
+    # misc
+    cmd-enter   = 'exec-and-forget open -na WezTerm'
+    cmd-shift-r = 'reload-config'
