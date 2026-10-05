@@ -112,6 +112,24 @@ after copying it:
 codesign -s aerospace-codesign-certificate -i bobko.aerospace.debug --force .debug/AeroSpaceApp
 ```
 
+## New machine setup
+
+`config/aerospace.toml` is my personal config and `KEYBINDINGS.md` documents its keys.
+To reproduce the whole setup on another Mac (needs full Xcode and Homebrew):
+
+```bash
+git clone https://github.com/bryan-arendt-cmm/DwindleSpace.git && cd DwindleSpace
+./setup-new-machine.sh
+```
+
+The script installs bash 5, JankyBorders and WezTerm. It builds a release
+`AeroSpace.app` (ad-hoc signed, so no certificate is needed), installs it to
+`/Applications` with the CLI in `$(brew --prefix)/bin`, copies the config to
+`~/.aerospace.toml` (backing up any existing one) and launches the app. You still have to
+grant Accessibility permission by hand, and update the monitor names in
+`[workspace-to-monitor-force-assignment]` if the displays are different. Pass
+`--build-only` to just build into `.release/`.
+
 ## Relationship to upstream
 
 DwindleSpace tracks [nikitabobko/AeroSpace](https://github.com/nikitabobko/AeroSpace)
